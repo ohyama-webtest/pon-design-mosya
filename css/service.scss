@@ -1,0 +1,619 @@
+$moji-color: #391e88;
+
+//マップ型変数breakpointsを定義
+$breakpoints: (
+  //キー値
+  "sm": "screen and (max-width: 575px)",
+  "md": "screen and (max-width: 767px)",
+  "lg": "screen and (max-width: 991px)",
+  "xl": "screen and (max-width: 1199px)"
+) !default;
+
+//メディアクエリ用のmixinを定義。デフォ値はmd
+@mixin mq($breakpoint: md) {
+  //map-get(マップ型変数, キー)で値を取得
+  @media #{map-get($breakpoints, $breakpoint)} {
+    //この中をカスタムできる
+    @content;
+  }
+}
+
+// 共通クラス
+body {
+  letter-spacing: 1px;
+  color: #333;
+}
+
+.wrap {
+  overflow: hidden;
+}
+
+.container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  list-style: none;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.btn {
+  width: 200px;
+  height: 60px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.background-color {
+  background-color: $moji-color;
+}
+
+// nav開始
+
+.nav {
+  width: 100%;
+  margin: 0 auto;
+  color: white;
+  font-family: "Montserrat";
+  // margin-top: -30px;
+  position: fixed;
+  z-index: 3333;
+  // background-color: $moji-color;
+  height: 80px;
+
+  .container {
+    display: flex;
+    max-width: 1380px;
+
+    .nav-left {
+      font-size: 17px;
+      padding-top: 26px;
+      margin-right: auto;
+      // padding-bottom: 26px;
+      padding-left: 20px;
+      a{
+        color: white;
+      }
+    }
+
+    .nav-right {
+      display: flex;
+      margin-left: auto;
+      
+      @include mq(md) {
+        display: none;
+      }
+      
+      a{
+        padding-top: 30px;
+        display: inline-block;
+        margin-right: 17px;
+        padding-bottom: 2px;
+
+        &:hover{
+          border-bottom: 1px solid white;
+        }
+        
+        li {
+          display: inline-block;
+          width: 100%;
+          color: white;
+          font-size: 15px;
+          font-weight: bold;
+          
+        }
+      }
+    }
+
+    .nav-right-sp {
+      display: none;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      @include mq(md) {
+        margin-left: auto;
+        display: block;
+        margin-right: 22px;
+        margin-top: 28px;
+      }
+
+      .nav-button {
+        .nav-button-item {
+          width: 50px;
+          height: 3px;
+          background-color: #fff;
+          margin-top: 5px;
+          border-radius: 4px;
+          transition: all 0.3s;
+        }
+      }
+    }
+  }
+}
+
+.nav-button.on #nav-button-1 {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.nav-button.on #nav-button-2 {
+  opacity: 0;
+}
+.nav-button.on #nav-button-3 {
+  transform: rotate(-45deg) translate(7px, -8px);
+}
+
+
+
+// nuv-sp-show開始
+.nav-sp-show.open{
+  display: none;
+  opacity: 1;
+  visibility: visible;
+
+  @include mq(md){
+    display: block;
+  }
+
+}
+.nav-sp-show.close{
+  display: none;
+}
+.nav-sp-show{
+  height: 100vh;
+  background: linear-gradient(#642390, #19074A);
+  display: none;
+  z-index: 444444;
+  position: absolute;
+  width: 100%;
+  overflow: hidden;
+  // opacity: 0;
+  // visibility: hidden;
+  
+  @include mq(md){
+    // display: block !important;
+  }
+  
+
+
+
+  #nav-delete-button-item1{
+    transform:  rotate(45deg) translate(2px,0);
+  }
+  #nav-delete-button-item2{
+    transform: rotate(-45deg) translate(2px, 0);
+  }
+
+  
+  ul{
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    a{
+      color: white;
+      font-size: 15px;
+      font-family: 'Montserrat';
+      font-weight: bold;
+      // line-height: 30px;
+      text-align: center;
+      
+      &:hover{
+        opacity: .8;
+      }
+      
+      li{
+        margin-bottom: 20px;
+
+      }
+    }
+  }
+
+  }
+
+
+.nav .container .nav-right-sp {
+  display: none;
+}
+
+.nav .container .nav-right-sp:hover {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 767px) {
+  .nav .container .nav-right-sp {
+    // margin-left: auto;
+    display: block;
+    // margin-right: 22px;
+    margin-top: 28px;
+    position: fixed;
+    left: 83%;
+    z-index: 5555555555555555;
+
+  }
+}
+
+
+// top開始
+
+.top {
+  height: 240px;
+  background-image: url(../img/hero.png);
+  background-size: cover;
+  font-family: "Montserrat";
+  color: white;
+  background-position: 60% 0;
+
+  @include mq(md) {
+    height: 190px;
+  }
+
+  h2 {
+    font-size: 36px;
+    font-weight: bold;
+    padding-top: 106px;
+    text-align: center;
+    font-family: "Montserrat";
+
+    @include mq(md) {
+      // margin-left: 50px;
+      // margin-right: 35px;
+      padding-top: 93px;
+      font-size: 30px;
+    }
+
+    br {
+      display: none;
+
+      @include mq(md) {
+        display: block;
+      }
+    }
+  }
+
+  .top-lead {
+    padding-top: 5px;
+    text-align: center;
+    padding-bottom: 48px;
+    font-size: 14px;
+    font-family: "Montserrat";
+
+    @include mq(md) {
+      font-size: 13px;
+      // margin-left: 50px;
+
+    }
+
+    br {
+      display: none;
+
+      @include mq(md) {
+        display: block;
+      }
+    }
+  }
+
+  .top-button-wrapper {
+    margin: 0 auto;
+    width: 220px;
+    height: 60px;
+    border-radius: 30px;
+
+    &:hover {
+      background-color: #fff;
+      transition: 0.5s;
+    }
+
+    .top-button {
+      text-align: center;
+      width: 220px;
+      height: 60px;
+      margin: 0 auto;
+      border: 1px solid #fff;
+      line-height: 59px;
+      color: #fff;
+      border-radius: 30px;
+      font-weight: bold;
+      display: inline-block;
+      text-align: center;
+
+      &:hover {
+        background-color: #fff;
+        color: #000;
+        border: 1px solid black;
+        transition: 0.5s;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// pankuzu開始
+.pankuzu {
+  background-color: #f7f7f7;
+  height: 45px;
+  width: 100%;
+
+  .container {
+    max-width: 1100px;
+
+    .pankuzu-text {
+      font-size: 12px;
+      font-family: "Montserrat";
+      padding-top: 15px;
+      padding-bottom: 15px;
+      padding-left: 40px;
+
+      @include mq(md) {
+        padding-left: 20px;
+      }
+
+      span {
+        color: $moji-color;
+      }
+    }
+  }
+}
+
+// service開始
+.service{
+  margin-top: 70px;
+  padding-bottom: 50px;
+
+  @include mq(sm){
+    margin-top: 50px;
+    padding-bottom: 20px;
+  }
+
+  .container{
+    margin: 0 auto;
+    max-width: 1100px;
+    width: 100%;
+
+    .service-item{
+      display: flex;
+      margin-bottom: 60px;
+
+
+      @include mq(xl){
+        display: block;
+      }
+
+      @include mq(sm){
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .service-item-left{
+        width: 445px;
+        height: 280px;
+
+        @include mq(xl){
+          width: 60%;
+          height: 100%;
+          margin: 0 auto;
+        }
+
+        @include mq(sm){
+          width: 100%;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+      }
+
+      .service-item-right{
+        width: 615px;
+        padding-left: 50px;
+
+        @include mq(xl){
+          width: 60%;
+          margin: 0 auto;
+          padding-left: 10px;
+          padding-right: 10px;
+        }
+
+        @include mq(sm){
+          width: 100%;
+        }
+
+        h3{
+          padding-bottom: 20px;
+          font-size: 24px;
+          font-family: 'Montserrat';
+          font-weight: bold;
+
+          @include mq(xl){
+            text-align: center;
+            margin-top: 20px;
+            padding-bottom: 15px;
+            font-size: 18px;
+          }
+        }
+
+        .service-text{
+          font-size: 15px;
+          font-family: 'Montserrat';
+          color: #333;
+          line-height: 26px;
+
+          @include mq(xl){
+            font-size: 14px;
+            line-height: 24px;
+          }
+
+          @include mq(sm){
+            line-height: 22px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+
+// contact開始
+
+.contact {
+  width: 100%;
+  // margin-top: 100px;
+  background-color: #f7f7f7;
+  padding-bottom: 79px;
+
+  .container {
+    h2 {
+      font-family: "Montserrat";
+      font-weight: bold;
+      font-size: 34px;
+      color: $moji-color;
+      text-align: center;
+      padding-top: 80px;
+
+      @include mq(md) {
+        font-size: 30px;
+      }
+    }
+
+    .contact-lead {
+      text-align: center;
+      font-family: "ヒラギノ角ゴシック";
+      font-weight: 600;
+      color: $moji-color;
+      padding-top: 5px;
+      padding-bottom: 35px;
+      font-size: 15px;
+
+      @include mq(md) {
+        font-size: 13px;
+      }
+    }
+
+    .contact-text {
+      text-align: center;
+      font-size: 15px;
+      font-family: "ヒラギノ角ゴシック";
+      font-weight: 300;
+
+      @include mq(md) {
+        font-size: 14px;
+      }
+
+      br {
+        display: none;
+
+        @include mq(md) {
+          display: block;
+        }
+      }
+    }
+
+    .contact-btn {
+      text-align: center;
+      margin-top: 31px;
+    }
+  }
+}
+
+// footer開始
+
+footer {
+  height: 173px;
+  background-color: #000;
+  color: #fff;
+  padding-top: 60px;
+  margin-right: -30px;
+
+  @include mq(md) {
+    height: 185px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+
+    ul {
+      margin-top: 20px;
+      
+      // li{
+      //   padding-top: 10px;
+      // }
+    }
+
+    .footer-nav {
+      display: flex;
+      text-align: center;
+      width: 100%;
+      margin: 0 auto;
+      list-style-type: none;
+
+      @include mq(md) {
+        display: block;
+        margin-left: 20px;
+      }
+
+      .footer-nav-top {
+        display: flex;
+      }
+
+      .footer-nav-bottom {
+        display: flex;
+      }
+
+      li {
+        color: #fff;
+        font-family: "Montserrat";
+        font-size: 14px;
+        font-weight: bold;
+        margin-right: 30px;
+        // text-align: center;
+        // width: 100%;
+
+        @include mq(md) {
+          margin-bottom: 20px;
+        }
+
+        &:hover {
+          border-bottom: 1px solid white;
+        }
+
+        a {
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+
+    .copyright {
+      font-family: "Montserrat";
+      font-size: 10px;
+      text-align: center;
+      color: #a798b7;
+      margin-top: 22px;
+
+      @include mq(md){
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+#footer-nav-hide {
+  display: none;
+
+  @include mq(md) {
+    display: block;
+  }
+}
